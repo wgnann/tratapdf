@@ -4,15 +4,17 @@ Trata PDF para torná-lo compatível com PDF/X e com impressoras em escala de ci
 ## dependências
   - icc-profiles
   - ghostscript
+  - poppler-utils
   - python3-tk
   - visualizador de PDF (nesta versão usamos o evince hardcoded)
 
-## instalação no Debian 11
+## instalação no Debian 12
   - clonar o repositório;
   - configurar as variáveis no `trata.py` e no `setup.sh`:
     - `BASE_DIR`: diretório onde ficarão os recursos;
-    - `GHOSTSCRIPT`: caminho para o executável;
-    - `PDF_VIEWER`: caminho para o executável;
+    - `GHOSTSCRIPT`: caminho para o gs;
+    - `PDF_INFO`: caminho para o pdfinfo;
+    - `PDF_VIEWER`: caminho para o visualizador;
   - rodar `setup.sh`.
 
 ## como rodar?

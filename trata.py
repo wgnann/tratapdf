@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 import sys
 import tkinter
@@ -7,6 +8,7 @@ from tkinter.messagebox import showerror
 
 BASE_DIR = os.getcwd()
 GHOSTSCRIPT = '/usr/bin/gs'
+PDF_INFO = '/usr/bin/pdfinfo'
 PDF_VIEWER = '/usr/bin/evince'
 
 def novo_nome(path):
@@ -57,6 +59,21 @@ class Tratador:
             print("Erro ao processar arquivo.")
         else:
             print("Arquivo {output} criado.".format(output=output))
+
+    def pdfinfo(self, path):
+        pdfinfo = PDF_INFO
+
+        process = subprocess.run([pdfinfo, path], capture_output=True)
+        if (process.returncode != 0):
+            print("Problema no PDF: tamanho indefinido")
+            raise
+
+        matches = re.search('Page size:\s+(\d+\.?\d+)\sx\s(\d+\.?\d+)', process.stdout.decode())
+        info = {}
+        info['width'] = matches[1]
+        info['height'] = matches[2]
+
+        return info
 
     # devolve process.returncode
     def pdfx(self, path):
