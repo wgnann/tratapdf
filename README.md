@@ -6,6 +6,7 @@ Trata PDF para torná-lo compatível com PDF/X e com impressoras em escala de ci
   - ghostscript
   - poppler-utils
   - python3-tk
+  - texlive-extra-utils
   - visualizador de PDF (nesta versão usamos o evince hardcoded)
 
 ## instalação no Debian 12
@@ -14,6 +15,7 @@ Trata PDF para torná-lo compatível com PDF/X e com impressoras em escala de ci
     - `BASE_DIR`: diretório onde ficarão os recursos;
     - `GHOSTSCRIPT`: caminho para o gs;
     - `PDF_INFO`: caminho para o pdfinfo;
+    - `PDF_JAM`: caminho para o pdfjam;
     - `PDF_VIEWER`: caminho para o visualizador;
   - rodar `setup.sh`.
 
