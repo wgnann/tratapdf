@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 import tkinter
 from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import showerror
@@ -18,8 +19,11 @@ def novo_nome(path):
     return base+'/'+arquivo+sufixo+extensao
 
 class Tratador:
-    def __init__(self):
-        self.gui()
+    def __init__(self, mode):
+        if (mode == 'cli'):
+            self.cli(sys.argv[1])
+        else:
+            self.gui()
 
     def gui(self):
         self.window = tkinter.Tk()
@@ -46,6 +50,14 @@ class Tratador:
             ])
         self.window.destroy()
 
+    def cli(self, path):
+        output = novo_nome(path)
+        returncode = self.pdfx(path)
+        if (returncode != 0):
+            print("Erro ao processar arquivo.")
+        else:
+            print("Arquivo {output} criado.".format(output=output))
+
     # devolve process.returncode
     def pdfx(self, path):
         gs = GHOSTSCRIPT
@@ -66,5 +78,8 @@ class Tratador:
         return process.returncode
 
 def main():
-    Tratador()
+    mode = 'gui'
+    if (len(sys.argv) > 1):
+        mode = 'cli'
+    Tratador(mode)
 main()
