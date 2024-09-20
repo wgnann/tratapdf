@@ -54,6 +54,8 @@ class Tratador:
         self.window.destroy()
 
     def cli(self, path):
+        if '/' not in path:
+            path = './' + path
         returncode = self.processa(path)
         if (returncode != 0):
             print("Erro ao processar arquivo.")
