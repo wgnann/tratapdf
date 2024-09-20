@@ -1,4 +1,5 @@
 #! /bin/bash
+# DEPS: pdftk parallel
 
 BASE_DIR=$(pwd)
 SOURCE=$1
